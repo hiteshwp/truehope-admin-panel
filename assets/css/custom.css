@@ -76,3 +76,8 @@ form select
     white-space: nowrap;
     gap: 10px;
 }
+
+.responsive-logo img
+{
+    max-width: 65px;
+}
