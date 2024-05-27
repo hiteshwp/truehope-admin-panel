@@ -16,8 +16,8 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    public string $baseURL = 'http://localhost/hitesh/ci/truehope-admin-panel/';
-    #public string $baseURL = 'https://staginghuburl.com/truehope-admin-panel/';
+    #public string $baseURL = 'http://localhost/hitesh/ci/truehope-admin-panel/';
+    public string $baseURL = 'https://staginghuburl.com/truehope-admin-panel/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
