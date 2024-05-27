@@ -1,0 +1,78 @@
+.input100
+{
+    border: 1px solid #000;
+}
+
+ul.parsley-errors-list.filled li
+{
+    color: red;
+    font-size: 14px;
+}
+.symbol-input100{
+    bottom: initial;
+    top: 15px;
+    height: auto;
+}
+
+.success b {
+    color: #ffffff !important;
+}
+
+input[type=text], input[type=email], .customselect, input[type=text]:focus, input[type=email]:focus, .customselect:focus, .select2-container, textarea, select, input[type=date], input[type=date]:focus
+{
+    border: 1.5px solid #000 !important;
+    border-radius: 0px !important;
+}
+
+.whitetext
+{
+    color: #fff !important;
+}
+.text-muted {
+    color: #000 !important;
+    font-weight: 400;
+}
+
+.side-menu__item.active {
+    background: #f31816;
+}
+
+.page-header {
+    margin: 5px 0rem 5px;
+}
+
+form select
+{
+    appearance: auto !important;
+}
+
+#back-to-top {
+    background: #f31816;
+}
+
+.header-brand-img {
+    height: 3.25rem;
+}
+
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #f31816;
+    border-color: #f31816;
+}
+
+.side-menu__item.active:hover, .side-menu__item.active:focus {
+    color: #ffffff;
+    background: #f31816 !important;
+}
+
+.login-img {
+    background: #f5f5f5 !important;
+}
+
+.dashboardgetdatatexbox
+{
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 10px;
+}
