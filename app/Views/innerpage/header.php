@@ -59,14 +59,14 @@
                             <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0);"></a>
                             <div class="responsive-logo">
                                 <a href="<?php echo base_url("dashboard"); ?>" class="header-logo">
-                                    <img src="<?php echo base_url("assets/images/nav-logo.png"); ?>" class="mobile-logo logo-1" alt="logo">
-                                    <img src="<?php echo base_url("assets/images/brand/nav-logo.png"); ?>" class="mobile-logo dark-logo-1" alt="logo">
+                                    <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="mobile-logo logo-1" alt="logo">
+                                    <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="mobile-logo dark-logo-1" alt="logo">
                                 </a>
                             </div>
                             <!-- sidebar-toggle-->
                             <a class="logo-horizontal " href="<?php echo base_url("dashboard"); ?>">
-                                <img src="<?php echo base_url("assets/images/brand/nav-logo.png"); ?>" class="header-brand-img desktop-logo" alt="logo">
-                                <img src="<?php echo base_url("assets/images/brand/nav-logo.png"); ?>" class="header-brand-img light-logo1"
+                                <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="header-brand-img light-logo1"
                                     alt="logo">
                             </a>
                             <!-- LOGO -->
@@ -129,10 +129,10 @@
                     <aside class="app-sidebar">
                         <div class="side-header">
                             <a class="header-brand1" href="<?php echo base_url("dashboard"); ?>">
-                                <img src="<?php echo base_url("assets/images/nav-logo.png"); ?>" class="header-brand-img desktop-logo" alt="logo">
-                                <img src="<?php echo base_url("assets/images/nav-logo.png"); ?>" class="header-brand-img toggle-logo" alt="logo">
-                                <img src="<?php echo base_url("assets/images/nav-logo.png"); ?>" class="header-brand-img light-logo" alt="logo">
-                                <img src="<?php echo base_url("assets/images/nav-logo.png"); ?>" class="header-brand-img light-logo1" alt="logo">
+                                <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="header-brand-img desktop-logo" alt="logo">
+                                <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="header-brand-img toggle-logo" alt="logo">
+                                <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="header-brand-img light-logo" alt="logo">
+                                <img src="<?php echo base_url("assets/images/true-hope-logo.png"); ?>" class="header-brand-img light-logo1" alt="logo">
                             </a>
                             <!-- LOGO -->
                         </div>
