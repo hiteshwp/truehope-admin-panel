@@ -122,59 +122,88 @@
              });
          </script>
      <?php endif;?>
+    
+    <?php
+        $router = service('router');
+        $controller  = $router->controllerName();
+        $method = $router->methodName();
 
-     <script type="text/javascript">
-        $(document).ready(function () {
-            var ctx = document.getElementById("chartBar2");
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-                    datasets: [{
-                        label: "Donations",
-                        data: [45, 59, 80, 81, 56, 55, 40],
-                        borderColor: "#000",
-                        borderWidth: "0",
-                        backgroundColor: "#000"
-                    }, {
-                        label: "Donors",
-                        data: [28, 48, 40, 19, 86, 27, 90],
-                        borderColor: "#f31816",
-                        borderWidth: "0",
-                        backgroundColor: "#f31816"
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        xAxes: [{
-                            ticks: {
-                                fontColor: "#77778e",
+        if( $controller == "\App\Controllers\DashboardController" && $method == "index" ) 
+        {
+            ?>
+                <script type="text/javascript">
+                    $(document).ready(function () 
+                    {
+                        var baseUrl = "<?php echo API_BASE_URL.'dashboard'; ?>";
+                        $.ajax({
+                            url: baseUrl,
+                            data: {'action':'getTotalGraphData'},
+                            type: "POST",
+                            dataType : "json",
+                            headers: {
+                            //"Content-Type": "application/json",
+                            "Authorization": "Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz"
                             },
-                            gridLines: {
-                                color: 'rgba(119, 119, 142, 0.2)'
+                            success: function(data)
+                            {
+                                if( data.status == true )
+                                {
+                                    var ctx = document.getElementById("chartBar2");
+                                    var myChart = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: data.data.graph_data.graph_month_data,
+                                            datasets: [{
+                                                label: "Donations",
+                                                data: data.data.graph_data.graph_donation_data,
+                                                borderColor: "#000",
+                                                borderWidth: "0",
+                                                backgroundColor: "#000"
+                                            }, {
+                                                label: "Donors",
+                                                data: data.data.graph_data.graph_donnor_data,
+                                                borderColor: "#f31816",
+                                                borderWidth: "0",
+                                                backgroundColor: "#f31816"
+                                            }]
+                                        },
+                                        options: {
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            scales: {
+                                                xAxes: [{
+                                                    ticks: {
+                                                        fontColor: "#77778e",
+                                                    },
+                                                    gridLines: {
+                                                        color: 'rgba(119, 119, 142, 0.2)'
+                                                    }
+                                                }],
+                                                yAxes: [{
+                                                    ticks: {
+                                                        beginAtZero: true,
+                                                        fontColor: "#77778e",
+                                                    },
+                                                    gridLines: {
+                                                        color: 'rgba(119, 119, 142, 0.2)'
+                                                    },
+                                                }]
+                                            },
+                                            legend: {
+                                                labels: {
+                                                    fontColor: "#77778e"
+                                                },
+                                            },
+                                        }
+                                    });
+                                }
                             }
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                fontColor: "#77778e",
-                            },
-                            gridLines: {
-                                color: 'rgba(119, 119, 142, 0.2)'
-                            },
-                        }]
-                    },
-                    legend: {
-                        labels: {
-                            fontColor: "#77778e"
-                        },
-                    },
-                }
-            });
-        });
-     </script>
+                        });
+                    });
+                </script>
+            <?php
+        }
+    ?>
     </body>
 
 </html>

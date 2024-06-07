@@ -21,9 +21,31 @@ class DashboardController extends BaseController
     }
     public function index()
     {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => API_BASE_URL.'dashboard',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        $result = json_decode($response, true);
+
         $pageData = array(
             "pageTitle"     =>  "Dashboard | ".SITE_TITLE,
             "main_content"  =>  "dashboard",
+            "dashboard_data"=>  $result
         );
         return view('/innerpage/template', $pageData);
     }
@@ -34,5 +56,30 @@ class DashboardController extends BaseController
         unset($_SESSION['sessionData']);
         $session->setFlashdata('logout-success', 'You have successfully Logout!.');
         return redirect()->to('/');
+    }
+
+    public function IND_money_format($number){
+        $decimal = (string)($number - floor($number));
+        $money = floor($number);
+        $length = strlen($money);
+        $delimiter = '';
+        $money = strrev($money);
+
+        for($i=0;$i<$length;$i++){
+            if(( $i==3 || ($i>3 && ($i-1)%2==0) )&& $i!=$length){
+                $delimiter .=',';
+            }
+            $delimiter .=$money[$i];
+        }
+
+        $result = strrev($delimiter);
+        $decimal = preg_replace("/0\./i", ".", $decimal);
+        $decimal = substr($decimal, 0, 3);
+
+        if( $decimal != '0'){
+            $result = $result.$decimal;
+        }
+
+        return $result;
     }
 }
