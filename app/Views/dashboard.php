@@ -157,7 +157,7 @@
                                                     <th class="border-bottom-0">Transaction Date</th>
                                                     <th class="border-bottom-0">Transaction ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Donar Name</th>
+                                                    <th class="border-bottom-0">Donor Name</th>
                                                     <th class="border-bottom-0">Donor Email</th>
                                                     <th class="border-bottom-0">Donor Mobile</th>
                                                     <th class="border-bottom-0">Total Donation</th>
@@ -193,7 +193,7 @@
                                                     <th class="border-bottom-0">Transaction Date</th>
                                                     <th class="border-bottom-0">Transaction ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Donar Name</th>
+                                                    <th class="border-bottom-0">Donor Name</th>
                                                     <th class="border-bottom-0">Donor Email</th>
                                                     <th class="border-bottom-0">Donor Mobile</th>
                                                     <th class="border-bottom-0">Total Donation</th>

@@ -140,8 +140,10 @@
                             data: {'action':'getTotalGraphData'},
                             type: "POST",
                             dataType : "json",
+                            crossDomain: true,
                             headers: {
                             //"Content-Type": "application/json",
+                            //"Access-Control-Allow-Origin":"*",
                             "Authorization": "Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz"
                             },
                             success: function(data)
