@@ -20,8 +20,9 @@ $(function(e) {
 
 	//______File-Export Data Table
 	var table = $('#file-datatable').DataTable({
-		buttons: [ 'excel', 'pdf'],
+		buttons: [ 'excel'],
 		scrollX: "100%",
+		order: [[1, 'desc']],
 		language: {
 			searchPlaceholder: 'Search...',
 			sSearch: '',

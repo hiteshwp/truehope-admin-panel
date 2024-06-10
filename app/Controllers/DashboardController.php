@@ -22,7 +22,6 @@ class DashboardController extends BaseController
     public function index()
     {
         $curl = curl_init();
-
         curl_setopt_array($curl, array(
             CURLOPT_URL => API_BASE_URL.'dashboard',
             CURLOPT_RETURNTRANSFER => true,
@@ -36,16 +35,14 @@ class DashboardController extends BaseController
                 'Authorization: Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz'
             ),
         ));
-
         $response = curl_exec($curl);
-
         curl_close($curl);
-        $result = json_decode($response, true);
+        $dashboard_result = json_decode($response, true);
 
         $pageData = array(
-            "pageTitle"     =>  "Dashboard | ".SITE_TITLE,
-            "main_content"  =>  "dashboard",
-            "dashboard_data"=>  $result
+            "pageTitle"                 =>  "Dashboard | ".SITE_TITLE,
+            "main_content"              =>  "dashboard",
+            "dashboard_data"            =>  $dashboard_result,
         );
         return view('/innerpage/template', $pageData);
     }

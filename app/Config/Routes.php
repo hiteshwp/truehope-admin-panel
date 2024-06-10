@@ -5,6 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+
 $routes->get('/clear-cache', function(){
     echo command('cache:clear');
  });
