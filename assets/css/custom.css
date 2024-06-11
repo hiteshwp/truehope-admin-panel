@@ -90,3 +90,10 @@ form select
 {
     font-size: 13px !important;
 }
+
+.parsley-errors-list.filled
+{
+    position: absolute;
+    top: 40px;
+    left: 93px;
+}
