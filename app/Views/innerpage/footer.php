@@ -134,22 +134,23 @@
                 <script type="text/javascript">
                     $(document).ready(function () 
                     {
+                        let ctx = document.getElementById("chartBar2");
+                        let myChart;
                         var baseUrl = "<?php echo API_BASE_URL.'dashboard'; ?>";
                         $.ajax({
                             url: baseUrl,
                             data: {'action':'getTotalGraphData'},
                             type: "POST",
                             dataType : "json",
+                            crossDomain: true,
                             headers: {
-                            //"Content-Type": "application/json",
                             "Authorization": "Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz"
                             },
                             success: function(data)
                             {
                                 if( data.status == true )
                                 {
-                                    var ctx = document.getElementById("chartBar2");
-                                    var myChart = new Chart(ctx, {
+                                    myChart = new Chart(ctx, {
                                         type: 'bar',
                                         data: {
                                             labels: data.data.graph_data.graph_month_data,
@@ -198,6 +199,114 @@
                                     });
                                 }
                             }
+                        });
+
+                        //jQuery("body").on('click', '#btngetdatewiserecords', function(event) {
+                        $("#frmgetdatabetweendates").parsley();
+                        jQuery("body").on('submit', '#frmgetdatabetweendates', function(event) {
+                            event.preventDefault();
+                            let fromdate   = jQuery("#mapfromdate").val();
+                            let todate     = jQuery("#maptodate").val();
+                            let thisData   = jQuery(this);
+                            var baseUrl = jQuery("body").data("au")+"get-dashboard-data-between-dates";
+                            jQuery.ajax({
+                                url: baseUrl,
+                                data: {'action':'getTotalGraphDataByBetweenDates', "mapfromdate":fromdate, "maptodate":todate},
+                                type: "POST",
+                                dataType : "json",
+                                crossDomain: true,
+                                headers: {
+                                "Authorization": "Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz"
+                                },
+                                beforeSend: function(data){  
+                                    jQuery("#btngetdatewiserecords").val('Please Wait...');
+                                    jQuery("#btngetdatewiserecords").attr("disabled", true);
+                                },
+                                success: function(data)
+                                {
+                                    jQuery("#btngetdatewiserecords").val('Fetch Records');
+                                    jQuery("#btngetdatewiserecords").attr("disabled", false);
+                                    if( data.status == true )
+                                    {
+                                        notif({
+                                            msg: "<b>Whoa! </b> "+data.msg,
+                                            type: "success"
+                                        });
+                                        if (myChart) {
+                                            myChart.destroy();
+                                        }
+                                        myChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: data.data.map_records.dates,
+                                                datasets: [{
+                                                    label: "Donations",
+                                                    data: data.data.map_records.date_amount,
+                                                    borderColor: "#000",
+                                                    borderWidth: "0",
+                                                    backgroundColor: "#000"
+                                                }, {
+                                                    label: "Donors",
+                                                    data: data.data.map_records.date_donors,
+                                                    borderColor: "#f31816",
+                                                    borderWidth: "0",
+                                                    backgroundColor: "#f31816"
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                maintainAspectRatio: false,
+                                                scales: {
+                                                    xAxes: [{
+                                                        ticks: {
+                                                            fontColor: "#77778e",
+                                                        },
+                                                        gridLines: {
+                                                            color: 'rgba(119, 119, 142, 0.2)'
+                                                        }
+                                                    }],
+                                                    yAxes: [{
+                                                        ticks: {
+                                                            beginAtZero: true,
+                                                            fontColor: "#77778e",
+                                                        },
+                                                        gridLines: {
+                                                            color: 'rgba(119, 119, 142, 0.2)'
+                                                        },
+                                                    }]
+                                                },
+                                                legend: {
+                                                    labels: {
+                                                        fontColor: "#77778e"
+                                                    },
+                                                },
+                                            }
+                                        });
+                                        myChart.render();
+
+                                        let dataTable = $("#file-datatable").DataTable();
+                                        dataTable.clear().draw();
+                                        jQuery.each(data.data.donation_data, function(index, value) 
+                                        {
+                                            //console.log(value);
+
+                                            var date = new Date(value.created_at);
+                                            var transactiondate = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '-' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '-' + date.getFullYear();
+
+                                            var status = "";
+                                            if( value.ngo_payment_data_status == "1" )
+                                            {
+                                                status = "Paid";
+                                            }
+
+                                            var amount = parseFloat(value.ngo_payment_data_donation_amount).toFixed(2);
+
+                                            dataTable.row.add([value.ngo_payment_data_id, transactiondate, value.ngo_payment_data_transaction_id, value.ngo_payment_data_campaign_title, value.ngo_payment_data_donor_name, value.ngo_payment_data_email_id, value.ngo_payment_data_mobile_no, amount, status]);
+                                        });
+                                        dataTable.draw();
+                                    }
+                                }
+                            });
                         });
                     });
                 </script>

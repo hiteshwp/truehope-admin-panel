@@ -40,7 +40,7 @@
 
     </head>
 
-    <body class="app sidebar-mini ltr light-mode" data-baseurl="<?php echo base_url(); ?>">
+    <body class="app sidebar-mini ltr light-mode" data-baseurl="<?php echo base_url(); ?>" data-au="<?php echo API_BASE_URL; ?>">
 
         <!-- GLOBAL-LOADER -->
         <div id="global-loader">

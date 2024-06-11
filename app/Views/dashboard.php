@@ -116,28 +116,30 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <div class="card ">
-                        <div class="card-body">
-                            <div class="row my-3">
-                                <div class="col-md-3">
-                                        <span class="dashboardgetdatatexbox">From Date - <input type="date" class="form-control mapfromdate" id="mapfromdate"/></span>
+                    <form id="frmgetdatabetweendates">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="row my-3">
+                                    <div class="col-md-3">
+                                            <span class="dashboardgetdatatexbox">From Date - <input type="date" class="form-control mapfromdate" id="mapfromdate" required/></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                            <span class="dashboardgetdatatexbox">To Date - <input type="date" class="form-control maptodate" id="maptodate" required/></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="submit" class="btn btn-success" id="btngetdatewiserecords" value="Fetch Records">
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                        <span class="dashboardgetdatatexbox">To Date - <input type="date" class="form-control maptodate" id="maptodate"/></span>
-                                </div>
-                                <div class="col-md-6">
-                                        <input type="submit" class="btn btn-success">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="chart-container">
-                                        <canvas id="chartBar2" class="h-600"></canvas>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="chart-container">
+                                            <canvas id="chartBar2" class="h-600"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="row">
@@ -157,7 +159,7 @@
                                                     <th class="border-bottom-0">Transaction Date</th>
                                                     <th class="border-bottom-0">Transaction ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Donar Name</th>
+                                                    <th class="border-bottom-0">Donor Name</th>
                                                     <th class="border-bottom-0">Donor Email</th>
                                                     <th class="border-bottom-0">Donor Mobile</th>
                                                     <th class="border-bottom-0">Total Donation</th>
@@ -193,7 +195,7 @@
                                                     <th class="border-bottom-0">Transaction Date</th>
                                                     <th class="border-bottom-0">Transaction ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Donar Name</th>
+                                                    <th class="border-bottom-0">Donor Name</th>
                                                     <th class="border-bottom-0">Donor Email</th>
                                                     <th class="border-bottom-0">Donor Mobile</th>
                                                     <th class="border-bottom-0">Total Donation</th>
