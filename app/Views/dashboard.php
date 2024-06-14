@@ -155,15 +155,11 @@
                                         <table id="file-datatable" class="table table-bordered text-nowrap key-buttons border-bottom  w-100">
                                             <thead>
                                                 <tr>
-                                                    <th class="border-bottom-0">Donation ID</th>
-                                                    <th class="border-bottom-0">Transaction Date</th>
-                                                    <th class="border-bottom-0">Transaction ID</th>
+                                                    <th class="border-bottom-0">Campaign ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Donor Name</th>
-                                                    <th class="border-bottom-0">Donor Email</th>
-                                                    <th class="border-bottom-0">Donor Mobile</th>
                                                     <th class="border-bottom-0">Total Donation</th>
-                                                    <th class="border-bottom-0">Donation Status</th>
+                                                    <th class="border-bottom-0">Total Donors</th>
+                                                    <th class="border-bottom-0">Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -174,15 +170,11 @@
                                                         {
                                                             ?>
                                                                 <tr>
-                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_id"]; ?></td>
-                                                                    <td><?php echo date("d-m-Y", strtotime($dashboard_donation_data_list["created_at"])); ?></td>
-                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_transaction_id"]; ?></td>
-                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_campaign_title"]; ?></td>
-                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_donor_name"]; ?></td>
-                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_email_id"]; ?></td>
-                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_mobile_no"]; ?></td>
+                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_campaign_id"]; ?></td>
+                                                                    <td><?php echo $dashboard_donation_data_list["ngo_payment_data_campaign_title"]; ?></td>                                                                  
                                                                     <td><?php echo number_format($dashboard_donation_data_list["ngo_payment_data_donation_amount"], 2); ?></td>
-                                                                    <td><?php if( $dashboard_donation_data_list["ngo_payment_data_status"] == 1 ){ echo "Paid"; } ?></td>
+                                                                    <td><?php echo $dashboard_donation_data_list["total_donors"]; ?></td> 
+                                                                    <td><a href='javascript:void()' class='btn btn-success btn-sm'>Detail</a></td>
                                                                 </tr>
                                                             <?php
                                                         }
@@ -191,15 +183,11 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th class="border-bottom-0">Donation ID</th>
-                                                    <th class="border-bottom-0">Transaction Date</th>
-                                                    <th class="border-bottom-0">Transaction ID</th>
+                                                    <th class="border-bottom-0">Campaign ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Donor Name</th>
-                                                    <th class="border-bottom-0">Donor Email</th>
-                                                    <th class="border-bottom-0">Donor Mobile</th>
                                                     <th class="border-bottom-0">Total Donation</th>
-                                                    <th class="border-bottom-0">Donation Status</th>
+                                                    <th class="border-bottom-0">Total Donors</th>
+                                                    <th class="border-bottom-0">Status</th>
                                                 </tr>
                                             </tfoot>
                                         </table>

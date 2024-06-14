@@ -288,20 +288,22 @@
                                         dataTable.clear().draw();
                                         jQuery.each(data.data.donation_data, function(index, value) 
                                         {
-                                            //console.log(value);
+                                            console.log(value);
 
-                                            var date = new Date(value.created_at);
-                                            var transactiondate = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '-' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '-' + date.getFullYear();
+                                            // var date = new Date(value.created_at);
+                                            // var transactiondate = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '-' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '-' + date.getFullYear();
 
-                                            var status = "";
-                                            if( value.ngo_payment_data_status == "1" )
-                                            {
-                                                status = "Paid";
-                                            }
+                                            // var status = "";
+                                            // if( value.ngo_payment_data_status == "1" )
+                                            // {
+                                            //     status = "Paid";
+                                            // }
+
+                                            var status = "<a href='javascript:void()' class='btn btn-success btn-sm'>Detail</a>";
 
                                             var amount = parseFloat(value.ngo_payment_data_donation_amount).toFixed(2);
 
-                                            dataTable.row.add([value.ngo_payment_data_id, transactiondate, value.ngo_payment_data_transaction_id, value.ngo_payment_data_campaign_title, value.ngo_payment_data_donor_name, value.ngo_payment_data_email_id, value.ngo_payment_data_mobile_no, amount, status]);
+                                            dataTable.row.add([value.ngo_payment_data_campaign_id, value.ngo_payment_data_campaign_title, amount, value.total_donors, status]);
                                         });
                                         dataTable.draw();
                                     }
