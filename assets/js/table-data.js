@@ -22,7 +22,7 @@ $(function(e) {
 	var table = $('#file-datatable').DataTable({
 		buttons: [ 'excel'],
 		scrollX: "100%",
-		order: [[1, 'desc']],
+		order: [[0, 'desc']],
 		language: {
 			searchPlaceholder: 'Search...',
 			sSearch: '',
