@@ -97,3 +97,12 @@ form select
     top: 40px;
     left: 93px;
 }
+
+.slide-item.active, .slide-item:hover, .slide-item:focus {
+    color: #f31816 !important;
+}
+
+.campaignstatus, .campaignoption
+{
+    appearance: auto;
+}

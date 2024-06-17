@@ -21,7 +21,8 @@ $(function(e) {
 	//______File-Export Data Table
 	var table = $('#file-datatable').DataTable({
 		buttons: [ 'excel'],
-		scrollX: "100%",
+		scrollX: true,
+		scrollCollapse: true,
 		order: [[0, 'desc']],
 		language: {
 			searchPlaceholder: 'Search...',

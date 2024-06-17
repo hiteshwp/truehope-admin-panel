@@ -79,4 +79,46 @@ class DashboardController extends BaseController
 
         return $result;
     }
+
+    public function category($id)
+    {
+        if( $id != "" )
+        {
+            $category_id = $id;
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => API_BASE_URL.'get-category-wise-donation-data',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array('term_id' => $category_id),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz'
+            ),
+            ));
+
+            $response = curl_exec($curl);
+
+            curl_close($curl);
+            $donation_result = json_decode($response, true);
+
+        }
+
+        $pageData = array(
+            "pageTitle"                 =>  "Category Wise Donation Data | ".SITE_TITLE,
+            "main_content"              =>  "category",
+            "dashboard_data"            =>  $donation_result,
+            "category_id"               =>  $category_id,
+        );
+        return view('/innerpage/template', $pageData);
+    }
+
+    public function all_category()
+    {
+        
+    }
 }

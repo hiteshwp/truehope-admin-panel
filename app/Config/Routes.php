@@ -17,3 +17,4 @@ $routes->get('/logout', 'DashboardController::logout');
 $routes->get('/forgot-password', 'LoginController::forgot_password');
 
 $routes->get('/dashboard', 'DashboardController::index');
+$routes->get('/category/(:num)', 'DashboardController::category/$1');

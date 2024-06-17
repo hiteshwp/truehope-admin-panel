@@ -145,19 +145,25 @@
                                 <li class="sub-category">
                                     <h3>&nbsp;</h3>
                                 </li>
-                                <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" ){ echo "is-expanded"; } ?>">
-                                    <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("dashboard"); ?>"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
+                                <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method=="index" ){ echo "is-expanded"; } ?>">
+                                    <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method=="index" ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("dashboard"); ?>"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
                                 </li>
-                                <li class="slide <?php if( $controller == "\App\Controllers\UserController" ){ echo "is-expanded"; } ?>">
-                                    <a class="side-menu__item <?php if( $controller == "\App\Controllers\UserController" ){ echo " active is-expanded"; } ?>" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-grid"></i><span class="side-menu__label">Campaigns</span><i class="angle fa fa-angle-right"></i></a>
+                                <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method !="index" ){ echo "is-expanded"; } ?>">
+                                    <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method !="index" ){ echo " active is-expanded"; } ?>" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-grid"></i><span class="side-menu__label">Campaigns</span><i class="angle fa fa-angle-right"></i></a>
                                     <ul class="slide-menu">
                                         <li class="side-menu-label1"><a href="javascript:void(0)">Master Detail</a></li>
-                                        <li><a href="javascript:void(0);" class="slide-item <?php if( $controller == "\App\Controllers\UserController" && $method=="create" ){ echo "active"; } ?>"> All Campaign</a></li>
-                                        <li><a href="javascript:void(0);" class="slide-item <?php if( $controller == "\App\Controllers\UserController" && $method=="index" ){ echo "active"; } ?>"> Urgently Needed</a></li>
-                                        <li><a href="javascript:void(0);" class="slide-item <?php if( $controller == "\App\Controllers\UserController" && $method=="deactive_user_list" ){ echo "active"; } ?>"> Explore Campaign</a></li>
-                                        <li><a href="javascript:void(0);" class="slide-item <?php if( $controller == "\App\Controllers\UserController" && $method=="staff_list" ){ echo "active"; } ?>"> Featured Campaign</a></li>
-                                        <li><a href="javascript:void(0);" class="slide-item <?php if( $controller == "\App\Controllers\UserController" && $method=="staff_list" ){ echo "active"; } ?>"> THF Campaign</a></li>
-                                        <li><a href="javascript:void(0);" class="slide-item <?php if( $controller == "\App\Controllers\UserController" && $method=="staff_list" ){ echo "active"; } ?>"> Medical Campaign</a></li>
+                                        <li><a href="<?php echo base_url("category/0"); ?>" class="slide-item  <?php if( $controller == "\App\Controllers\DashboardController" && $method =="category" && $category_id == 0 ){ echo "active"; } ?>"> All Campaign</a></li>
+                                        <?php
+                                            if( $dashboard_data["data"]["campaign_category_menu"] )
+                                            {
+                                                foreach( $dashboard_data["data"]["campaign_category_menu"] as $category_listing )
+                                                {
+                                                    ?>
+                                                        <li><a href="<?php echo base_url("category/").$category_listing["term_id"]; ?>" class="slide-item <?php if( $controller == "\App\Controllers\DashboardController" && $method =="category" && $category_listing["term_id"] == $category_id ){ echo "active"; } ?>"> <?php echo $category_listing["term_name"]; ?></a></li>
+                                                    <?php
+                                                }
+                                            }
+                                        ?>
                                     </ul>
                                 </li>                                     
                                 <li class="slide">
