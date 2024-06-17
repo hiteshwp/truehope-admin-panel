@@ -97,5 +97,5 @@ define('EVENT_PRIORITY_HIGH', 10);
 
 // Custom contants
 define('SITE_TITLE', "True Hope Foundation Admin Panel");
-define('API_BASE_URL', "https://staginghuburl.com/truehope/wp-json/thf/v1/");
-#define('API_BASE_URL', "https://truehopefoundation.in/wp-json/thf/v1/");
+#define('API_BASE_URL', "https://staginghuburl.com/truehope/wp-json/thf/v1/");
+define('API_BASE_URL', "https://truehopefoundation.in/wp-json/thf/v1/");
