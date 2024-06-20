@@ -21,6 +21,7 @@ class DashboardController extends BaseController
     }
     public function index()
     {
+        $session   = session();
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => API_BASE_URL.'dashboard',
@@ -40,9 +41,10 @@ class DashboardController extends BaseController
         $dashboard_result = json_decode($response, true);
 
         $pageData = array(
-            "pageTitle"                 =>  "Dashboard | ".SITE_TITLE,
-            "main_content"              =>  "dashboard",
-            "dashboard_data"            =>  $dashboard_result,
+            "pageTitle"        =>   "Dashboard | ".SITE_TITLE,
+            "main_content"     =>   "dashboard",
+            "dashboard_data"   =>   $dashboard_result,
+            "curUserData"      =>   $session->get('sessionData')
         );
         return view('/innerpage/template', $pageData);
     }
@@ -82,6 +84,7 @@ class DashboardController extends BaseController
 
     public function category($id)
     {
+        $session   = session();
         if( $id != "" )
         {
             $category_id = $id;
@@ -109,16 +112,42 @@ class DashboardController extends BaseController
         }
 
         $pageData = array(
-            "pageTitle"                 =>  "Category Wise Donation Data | ".SITE_TITLE,
-            "main_content"              =>  "category",
-            "dashboard_data"            =>  $donation_result,
-            "category_id"               =>  $category_id,
+            "pageTitle"        =>   "Category Wise Donation Data | ".SITE_TITLE,
+            "main_content"     =>   "category",
+            "dashboard_data"   =>   $donation_result,
+            "category_id"      =>   $category_id,
+            "curUserData"      =>   $session->get('sessionData')
         );
         return view('/innerpage/template', $pageData);
     }
 
-    public function all_category()
+    public function change_password()
     {
-        
+        $session   = session();
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => API_BASE_URL.'dashboard',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz'
+            ),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $dashboard_result = json_decode($response, true);
+
+        $pageData = array(
+            "pageTitle"        =>   "Change Password | ".SITE_TITLE,
+            "main_content"     =>   "change-password",
+            "dashboard_data"   =>   $dashboard_result,
+            "curUserData"      =>   $session->get('sessionData')
+        );
+        return view('/innerpage/template', $pageData);
     }
 }

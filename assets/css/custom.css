@@ -18,7 +18,7 @@ ul.parsley-errors-list.filled li
     color: #ffffff !important;
 }
 
-input[type=text], input[type=email], .customselect, input[type=text]:focus, input[type=email]:focus, .customselect:focus, .select2-container, textarea, select, input[type=date], input[type=date]:focus
+input[type=text], input[type=email], .customselect, input[type=text]:focus, input[type=email]:focus, .customselect:focus, .select2-container, textarea, select, input[type=date], input[type=date]:focus, input[type=password], input[type=password]:focus
 {
     border: 1.5px solid #000 !important;
     border-radius: 0px !important;
@@ -91,7 +91,7 @@ form select
     font-size: 13px !important;
 }
 
-.parsley-errors-list.filled
+#frmetdatewisedonationrecords ul.parsley-errors-list.filled li, #frmgetdatabetweendates ul.parsley-errors-list.filled li
 {
     position: absolute;
     top: 40px;

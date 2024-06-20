@@ -119,17 +119,24 @@
                     <form id="frmgetdatabetweendates">
                         <div class="card ">
                             <div class="card-body">
-                                <div class="row my-3">
-                                    <div class="col-md-3">
-                                            <span class="dashboardgetdatatexbox">From Date - <input type="date" class="form-control mapfromdate" id="mapfromdate" required/></span>
-                                    </div>
-                                    <div class="col-md-3">
-                                            <span class="dashboardgetdatatexbox">To Date - <input type="date" class="form-control maptodate" id="maptodate" required/></span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="submit" class="btn btn-success" id="btngetdatewiserecords" value="Fetch Records">
-                                    </div>
-                                </div>
+                                <?php
+                                    if( $curUserData["login_type"] != "Normal User" )
+                                    {
+                                        ?>
+                                            <div class="row my-3">
+                                                <div class="col-md-3">
+                                                        <span class="dashboardgetdatatexbox">From Date - <input type="date" class="form-control mapfromdate" id="mapfromdate" required/></span>
+                                                </div>
+                                                <div class="col-md-3">
+                                                        <span class="dashboardgetdatatexbox">To Date - <input type="date" class="form-control maptodate" id="maptodate" required/></span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="submit" class="btn btn-success" id="btngetdatewiserecords" value="Fetch Records">
+                                                </div>
+                                            </div>
+                                        <?php
+                                    } 
+                                ?>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="chart-container">
