@@ -19,18 +19,18 @@ $(function(e) {
 	});
 
 	//______File-Export Data Table
-	var table = $('#file-datatable').DataTable({
-		buttons: [ 'excel'],
-		scrollX: true,
-		scrollCollapse: true,
-		order: [[0, 'desc']],
-		language: {
-			searchPlaceholder: 'Search...',
-			sSearch: '',
-		}
-	});
-	table.buttons().container()
-	.appendTo( '#file-datatable_wrapper .col-md-6:eq(0)' );	
+	// var table = $('#file-datatable').DataTable({
+	// 	buttons: [ 'excel'],
+	// 	scrollX: true,
+	// 	scrollCollapse: true,
+	// 	order: [[0, 'desc']],
+	// 	language: {
+	// 		searchPlaceholder: 'Search...',
+	// 		sSearch: '',
+	// 	}
+	// });
+	// table.buttons().container()
+	// .appendTo( '#file-datatable_wrapper .col-md-6:eq(0)' );	
 
 	//______Delete Data Table
 	var table = $('#delete-datatable').DataTable({

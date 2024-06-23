@@ -1,3 +1,11 @@
+<?php
+    $router      =  service('router');
+    $controller  =  $router->controllerName();
+    $method      =  $router->methodName();
+    $session     =  session();
+    $curUserData =  $session->get('sessionData');
+    //echo $controller."--".$method;
+?>
 </div>
 
             <!-- FOOTER -->
@@ -115,6 +123,48 @@
 
         <!-- AJAX JS -->
         <script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
+
+        <script type="text/javascript">
+            <?php
+                if( $curUserData["login_type"] == "Normal User" )
+                {
+                    ?>
+                        $(document).ready(function () {
+                            var table = $('#file-datatable').DataTable({
+                                scrollX: true,
+                                scrollCollapse: true,
+                                order: [[0, 'desc']],
+                                language: {
+                                    searchPlaceholder: 'Search...',
+                                    sSearch: '',
+                                }
+                            });
+                            table.buttons().container()
+                            .appendTo( '#file-datatable_wrapper .col-md-6:eq(0)' );	
+                        });
+                    <?php
+                }
+                else
+                {
+                    ?>
+                        $(document).ready(function () {
+                            var table = $('#file-datatable').DataTable({
+                                buttons: [ 'excel'],
+                                scrollX: true,
+                                scrollCollapse: true,
+                                order: [[0, 'desc']],
+                                language: {
+                                    searchPlaceholder: 'Search...',
+                                    sSearch: '',
+                                }
+                            });
+                            table.buttons().container()
+                            .appendTo( '#file-datatable_wrapper .col-md-6:eq(0)' );	
+                        });
+                    <?php
+                }
+            ?>
+        </script>
 
         <?php if(session()->getFlashdata('login-success')):?>
             <script type="text/javascript">

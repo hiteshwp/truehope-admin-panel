@@ -475,4 +475,142 @@ jQuery(document).ready(function() {
         }
     });
     
+    jQuery('#frmchangepassword').parsley();
+
+    jQuery("body").on("click", ".userloggout", function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure to logout this user?')) {
+            let user_activity_id = jQuery(this).data("useractivity-id");
+            jQuery.ajax({
+                url: baseUrl+"change-user-activity-status",
+                data: {'action':'actChangeUserActivityStatus', "user_activity_id":user_activity_id},
+                type: "POST",
+                dataType : "json",
+                crossDomain: true,
+                headers: {
+                "Authorization": "Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz"
+                },
+                beforeSend: function(data){  
+
+                },
+                success: function(data)
+                {
+                    if( data.status == "Success" )
+                    {
+                        notif({
+                            msg: "<b>Whoa! </b> "+data.msg,
+                            type: "success"
+                        });
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                    else
+                    {
+                        notif({
+                            msg: "<b>Oops! </b>"+data.msg,
+                            type: "error"
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    jQuery("body").on("click", ".btnuserdeactive", function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure to deactive this user?')) {
+            let user_id = jQuery(this).data("userid");
+            jQuery.ajax({
+                url: baseUrl+"change-user-status",
+                data: {'action':'actChangeUserStatus', "user_id":user_id},
+                type: "POST",
+                dataType : "json",
+                crossDomain: true,
+                headers: {
+                "Authorization": "Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz"
+                },
+                beforeSend: function(data){  
+                    jQuery(this).attr('disabled',true);
+                    jQuery(this).text('Please Wait..');
+                },
+                success: function(data)
+                {
+                    jQuery(this).attr('disabled',false);
+                    jQuery(this).text('Deactive');
+                    if( data.status == "Success" )
+                    {
+                        notif({
+                            msg: "<b>Whoa! </b> "+data.msg,
+                            type: "success"
+                        });
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                    else
+                    {
+                        notif({
+                            msg: "<b>Oops! </b>"+data.msg,
+                            type: "error"
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    jQuery("body").on("click", ".btneditusermodal", function (e) {
+        e.preventDefault();
+        jQuery('#updateuserfirstname').val(jQuery(this).data("firstname"));
+        jQuery('#updateuserlastname').val(jQuery(this).data("lastname"));
+        jQuery('#updateuseremailaddress').val(jQuery(this).data("email"));
+        jQuery('#updateuserrole').val(jQuery(this).data("role"));
+        jQuery('#updateuserid').val(jQuery(this).data("userid"));
+        jQuery('#updateuserstatus').val(jQuery(this).data("status"));
+    });
+
+    jQuery('#frmupdatenewuser').parsley();
+    jQuery("body").on("submit", "#frmupdatenewuser", function (e) {
+        e.preventDefault();
+        if(jQuery('#frmupdatenewuser').parsley().isValid())
+        {
+            jQuery.ajax({  
+                type:"POST",  
+                data: jQuery('#frmupdatenewuser').serialize(),
+                dataType: "json",
+                async: false,
+                crossDomain: true,
+                headers: {
+                "Authorization": "Basic dHJ1ZV9ob3BlX2FwaV91c2VyOlRydWVAQEBIb3BlIyMjMTIz"
+                },
+                url:baseUrl+"update-user-data",
+                beforeSend: function(data){  
+                    jQuery('#btnupdateuser').attr('disabled',true);
+                    jQuery('#btnupdateuser').text('Please Wait..');
+                },
+                success:function(data){  
+                    if( data.status == "Success" )
+                    {
+                        notif({
+                            msg: "<b>Whoa! </b> "+data.msg,
+                            type: "success"
+                        });
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 2000);
+                    }
+                    else
+                    {
+                        jQuery('#btnupdateuser').attr('disabled',false);
+                        jQuery('#btnupdateuser').text('Update User');
+                        notif({
+                            msg: "<b>Oops! </b>"+data.msg,
+                            type: "error"
+                        });
+                    }
+                }
+            });
+        }
+    });
 });

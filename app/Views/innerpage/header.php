@@ -173,8 +173,8 @@
                                     if( $curUserData["login_type"] == "Super Admin" )
                                     {
                                         ?>
-                                            <li class="slide <?php if( $controller == "\App\Controllers\UserController" && $method=="index" ){ echo "is-expanded"; } ?>">
-                                                <a class="side-menu__item <?php if( $controller == "\App\Controllers\UserController" && $method=="index" ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("user-list"); ?>"><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Accounts</span></a>
+                                            <li class="slide <?php if( $controller == "\App\Controllers\UserController" && ( $method=="index" || $method=="user_login_history" ) ){ echo "is-expanded"; } ?>">
+                                                <a class="side-menu__item <?php if( $controller == "\App\Controllers\UserController" &&  ( $method=="index" || $method=="user_login_history" ) ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("user-list"); ?>"><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Accounts</span></a>
                                             </li>
 
                                             <li class="slide">
@@ -183,9 +183,18 @@
                                         <?php
                                     } 
                                 ?>   
-                                <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method=="change_password" ){ echo "is-expanded"; } ?>">
-                                    <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method=="change_password" ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("change-password"); ?>"><i class="side-menu__icon fe fe-lock"></i><span class="side-menu__label">Change Password</span></a>
-                                </li>                
+
+                                <?php
+                                    if( $curUserData["login_type"] != "Super Admin" )
+                                    {
+                                        ?>
+                                            <!-- <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method=="change_password" ){ echo "is-expanded"; } ?>">
+                                                <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method=="change_password" ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("change-password"); ?>"><i class="side-menu__icon fe fe-lock"></i><span class="side-menu__label">Change Password</span></a>
+                                            </li>  -->
+                                        <?php
+                                    }
+                                ?>
+                                               
                                 <li class="slide">
                                     <a class="side-menu__item" data-bs-toggle="slide" href="<?php echo base_url("logout"); ?>"><i class="side-menu__icon fe fe-power"></i><span class="side-menu__label">Logout</span></a>
                                 </li>

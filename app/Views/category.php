@@ -13,27 +13,20 @@
                             <h3 class="card-title">Campaign Details</h3>
                         </div>
                         <div class="card-body">
-                            <?php
-                                if( $curUserData["login_type"] != "Normal User" )
-                                {
-                                    ?>
-                                        <form method="post" id="frmetdatewisedonationrecords">
-                                            <div class="row my-5">
-                                                <div class="col-md-3">
-                                                        <span class="dashboardgetdatatexbox">From Date - <input type="date" class="form-control mapfromdate" id="mapfromdate" required/></span>
-                                                </div>
-                                                <div class="col-md-3">
-                                                        <span class="dashboardgetdatatexbox">To Date - <input type="date" class="form-control maptodate" id="maptodate" required/></span>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="submit" class="btn btn-success" id="btngetdatewisedonationrecords" value="Fetch Records">
-                                                    <input type="hidden" value="<?php echo $category_id; ?>" id="term_id">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    <?php
-                                } 
-                            ?>
+                            <form method="post" id="frmetdatewisedonationrecords">
+                                <div class="row my-5">
+                                    <div class="col-md-3">
+                                            <span class="dashboardgetdatatexbox">From Date - <input type="date" class="form-control mapfromdate" id="mapfromdate" required/></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                            <span class="dashboardgetdatatexbox">To Date - <input type="date" class="form-control maptodate" id="maptodate" required/></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="submit" class="btn btn-success" id="btngetdatewisedonationrecords" value="Fetch Records">
+                                        <input type="hidden" value="<?php echo $category_id; ?>" id="term_id">
+                                    </div>
+                                </div>
+                            </form>
                             <div class="row">
                                 <div class="col-md-12">
                                     <hr>

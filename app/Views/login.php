@@ -77,9 +77,9 @@
 											<i class="zmdi zmdi-lock" aria-hidden="true"></i>
 										</span>
 									</div>
-									<div class="text-end pt-1">
+									<!-- <div class="text-end pt-1">
 										<p class="mb-0"><a href="<?php echo base_url("forgot-password"); ?>" class="text-primary ms-1">Forgot Password?</a></p>
-									</div>
+									</div> -->
 									<div class="container-login100-form-btn">
 										<input type="submit" name="btnlogin" id="btnlogin" class="login100-form-btn btn-primary" value="Submit"/>
                                         <input type="hidden" name="action" value="actDoLogin">
