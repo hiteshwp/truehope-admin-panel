@@ -3,7 +3,7 @@
     $controller  =  $router->controllerName();
     $method      =  $router->methodName();
     $session     =  session();
-    $curUserData =  $session->get('userdata');
+    $curUserData =  $session->get('sessionData');
     //echo $controller."--".$method;
 ?>
 <!doctype html>
@@ -101,8 +101,8 @@
                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                                     <div class="drop-heading">
                                                         <div class="text-center">
-                                                            <h5 class="text-dark mb-0">Elizabeth Dyer</h5>
-                                                            <small class="text-muted">Administrator</small>
+                                                            <h5 class="text-dark mb-0"><?php echo $curUserData["login_full_name"]; ?></h5>
+                                                            <small class="text-muted"><?php echo $curUserData["login_type"]; ?></small>
                                                         </div>
                                                     </div>
                                                     <div class="dropdown-divider m-0"></div>
@@ -148,8 +148,8 @@
                                 <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method=="index" ){ echo "is-expanded"; } ?>">
                                     <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method=="index" ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("dashboard"); ?>"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Dashboard</span></a>
                                 </li>
-                                <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method !="index" ){ echo "is-expanded"; } ?>">
-                                    <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method !="index" ){ echo " active is-expanded"; } ?>" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-grid"></i><span class="side-menu__label">Campaigns</span><i class="angle fa fa-angle-right"></i></a>
+                                <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method =="category" ){ echo "is-expanded"; } ?>">
+                                    <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method =="category" ){ echo " active is-expanded"; } ?>" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-grid"></i><span class="side-menu__label">Campaigns</span><i class="angle fa fa-angle-right"></i></a>
                                     <ul class="slide-menu">
                                         <li class="side-menu-label1"><a href="javascript:void(0)">Master Detail</a></li>
                                         <li><a href="<?php echo base_url("category/0"); ?>" class="slide-item  <?php if( $controller == "\App\Controllers\DashboardController" && $method =="category" && $category_id == 0 ){ echo "active"; } ?>"> All Campaign</a></li>
@@ -168,16 +168,33 @@
                                 </li>                                     
                                 <li class="slide">
                                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-credit-card"></i><span class="side-menu__label">Monthly Donations</span></a>
-                                </li>       
-                                <li class="slide">
-                                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Accounts</span></a>
-                                </li>
-                                <li class="slide">
-                                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-settings"></i><span class="side-menu__label">Settings</span></a>
-                                </li>
-                                <li class="slide">
-                                    <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-lock"></i><span class="side-menu__label">Change Password</span></a>
-                                </li>                
+                                </li>   
+                                <?php
+                                    if( $curUserData["login_type"] == "Super Admin" )
+                                    {
+                                        ?>
+                                            <li class="slide <?php if( $controller == "\App\Controllers\UserController" && ( $method=="index" || $method=="user_login_history" ) ){ echo "is-expanded"; } ?>">
+                                                <a class="side-menu__item <?php if( $controller == "\App\Controllers\UserController" &&  ( $method=="index" || $method=="user_login_history" ) ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("user-list"); ?>"><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Accounts</span></a>
+                                            </li>
+
+                                            <li class="slide">
+                                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-settings"></i><span class="side-menu__label">Settings</span></a>
+                                            </li>
+                                        <?php
+                                    } 
+                                ?>   
+
+                                <?php
+                                    if( $curUserData["login_type"] != "Super Admin" )
+                                    {
+                                        ?>
+                                            <!-- <li class="slide <?php if( $controller == "\App\Controllers\DashboardController" && $method=="change_password" ){ echo "is-expanded"; } ?>">
+                                                <a class="side-menu__item <?php if( $controller == "\App\Controllers\DashboardController" && $method=="change_password" ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("change-password"); ?>"><i class="side-menu__icon fe fe-lock"></i><span class="side-menu__label">Change Password</span></a>
+                                            </li>  -->
+                                        <?php
+                                    }
+                                ?>
+                                               
                                 <li class="slide">
                                     <a class="side-menu__item" data-bs-toggle="slide" href="<?php echo base_url("logout"); ?>"><i class="side-menu__icon fe fe-power"></i><span class="side-menu__label">Logout</span></a>
                                 </li>

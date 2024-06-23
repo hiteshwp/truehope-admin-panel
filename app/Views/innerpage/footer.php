@@ -1,3 +1,11 @@
+<?php
+    $router      =  service('router');
+    $controller  =  $router->controllerName();
+    $method      =  $router->methodName();
+    $session     =  session();
+    $curUserData =  $session->get('sessionData');
+    //echo $controller."--".$method;
+?>
 </div>
 
             <!-- FOOTER -->
@@ -102,6 +110,11 @@
 
 		<script src="<?php echo base_url("assets/js/form-elements.js"); ?>"></script>
 
+        <!-- WYSIWYG Editor JS -->
+		<script src="<?php echo base_url("assets/plugins/wysiwyag/jquery.richtext.js"); ?>"></script>
+		<script src="<?php echo base_url("assets/plugins/wysiwyag/wysiwyag.js"); ?>"></script>
+
+
         <!-- CUSTOM JS -->
         <script src="<?php echo base_url("assets/js/custom.js"); ?>"></script>
 
@@ -111,17 +124,71 @@
         <!-- AJAX JS -->
         <script src="<?php echo base_url("assets/js/ajax.js"); ?>"></script>
 
+        <script type="text/javascript">
+            <?php
+                if( $curUserData["login_type"] == "Normal User" )
+                {
+                    ?>
+                        $(document).ready(function () {
+                            var table = $('#file-datatable').DataTable({
+                                scrollX: true,
+                                scrollCollapse: true,
+                                order: [[0, 'desc']],
+                                language: {
+                                    searchPlaceholder: 'Search...',
+                                    sSearch: '',
+                                }
+                            });
+                            table.buttons().container()
+                            .appendTo( '#file-datatable_wrapper .col-md-6:eq(0)' );	
+                        });
+                    <?php
+                }
+                else
+                {
+                    ?>
+                        $(document).ready(function () {
+                            var table = $('#file-datatable').DataTable({
+                                buttons: [ 'excel'],
+                                scrollX: true,
+                                scrollCollapse: true,
+                                order: [[0, 'desc']],
+                                language: {
+                                    searchPlaceholder: 'Search...',
+                                    sSearch: '',
+                                }
+                            });
+                            table.buttons().container()
+                            .appendTo( '#file-datatable_wrapper .col-md-6:eq(0)' );	
+                        });
+                    <?php
+                }
+            ?>
+        </script>
+
         <?php if(session()->getFlashdata('login-success')):?>
-         <script type="text/javascript">
-             $(document).ready(function() {
-               let msg = "<?php echo session()->getFlashdata('login-success') ?>";
-               notif({
-                    msg: "<b>Whoa! </b> "+msg,
-                    type: "success"
+            <script type="text/javascript">
+                $(document).ready(function() {
+                let msg = "<?php echo session()->getFlashdata('login-success') ?>";
+                notif({
+                        msg: "<b>Whoa! </b> "+msg,
+                        type: "success"
+                    });
                 });
-             });
-         </script>
-     <?php endif;?>
+            </script>
+        <?php endif;?>
+
+        <?php if(session()->getFlashdata('error-message')):?>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                let msg = "<?php echo session()->getFlashdata('error-message') ?>";
+                notif({
+                        msg: "<b>Oops! </b> "+msg,
+                        type: "error"
+                    });
+                });
+            </script>
+        <?php endif;?>
     
     <?php
         $router = service('router');
