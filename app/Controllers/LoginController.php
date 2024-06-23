@@ -103,7 +103,7 @@ class LoginController extends BaseController
         
                 }
             } 
-            elseif( $userloginData )
+            else if( $userloginData )
             {
                 if( trim($postData["txtloginpassword"]) == $encrypter->decrypt($userloginData["user_password"]) )
                 {
@@ -113,13 +113,13 @@ class LoginController extends BaseController
                         $user_status = "Admin User";
                     }
 
-                    $mybrowser = get_browser(null, true);
+                    $mybrowser = $this->browser();
 
                     $inset_activities_data = array(
                         "user_id"               =>  $userloginData['user_id'],
                         "user_role"             =>  $user_status,
                         "user_ip_address"       =>  $this->get_client_ip(),
-                        "user_platform"         =>  $mybrowser["browser"],
+                        "user_platform"         =>  $mybrowser,
                         "created_at"            =>  date("Y-m-d H:i:s"),
                         "user_activities_status"=>  "1",
                     );
@@ -182,5 +182,35 @@ class LoginController extends BaseController
             "pageTitle" =>  "Forgot Password | ".SITE_TITLE,
         );
         return view('forgot_password', $pageData);
+    }
+
+    public function browser()
+    {
+        $browser="";
+        if(strrpos(strtolower($_SERVER["HTTP_USER_AGENT"]),strtolower("MSIE")))
+        {
+            $browser="Internet Explorer";
+        }
+        else if(strrpos(strtolower($_SERVER["HTTP_USER_AGENT"]),strtolower("Presto")))
+        {
+            $browser="Opera";
+        }
+        else if(strrpos(strtolower($_SERVER["HTTP_USER_AGENT"]),strtolower("CHROME")))
+        {
+            $browser="Google Chrome";
+        }
+        else if(strrpos(strtolower($_SERVER["HTTP_USER_AGENT"]),strtolower("SAFARI")))
+        {
+            $browser="Safari";
+        }
+        else if(strrpos(strtolower($_SERVER["HTTP_USER_AGENT"]),strtolower("FIREFOX")))
+        {
+            $browser="FIREFOX";
+        }
+        else
+        {
+            $browser="OTHER";
+        }
+        return $browser;
     }
 }
