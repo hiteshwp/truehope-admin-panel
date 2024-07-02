@@ -177,9 +177,9 @@
                                                 <a class="side-menu__item <?php if( $controller == "\App\Controllers\UserController" &&  ( $method=="index" || $method=="user_login_history" ) ){ echo "active"; } ?>" data-bs-toggle="slide" href="<?php echo base_url("user-list"); ?>"><i class="side-menu__icon fe fe-users"></i><span class="side-menu__label">Accounts</span></a>
                                             </li>
 
-                                            <li class="slide">
+                                            <!-- <li class="slide">
                                                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fe fe-settings"></i><span class="side-menu__label">Settings</span></a>
-                                            </li>
+                                            </li> -->
                                         <?php
                                     } 
                                 ?>   
