@@ -39,10 +39,10 @@
                                                     <th class="border-bottom-0">Campaign ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
                                                     <th class="border-bottom-0">NGO Name</th>
-                                                    <th class="border-bottom-0">Status</th>
+                                                    <th class="border-bottom-0">Campaign Status</th>
                                                     <th class="border-bottom-0">Fund Raised</th>
                                                     <th class="border-bottom-0">Created Date</th>
-                                                    <th class="border-bottom-0">Option</th>
+                                                    <th class="border-bottom-0">Campaign Option</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -103,10 +103,10 @@
                                                     <th class="border-bottom-0">Campaign ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
                                                     <th class="border-bottom-0">NGO Name</th>
-                                                    <th class="border-bottom-0">Status</th>
+                                                    <th class="border-bottom-0">Campaign Status</th>
                                                     <th class="border-bottom-0">Fund Raised</th>
                                                     <th class="border-bottom-0">Created Date</th>
-                                                    <th class="border-bottom-0">Option</th>
+                                                    <th class="border-bottom-0">Campaign Option</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
