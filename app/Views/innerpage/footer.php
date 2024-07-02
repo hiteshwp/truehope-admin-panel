@@ -366,11 +366,12 @@
                                             //     status = "Paid";
                                             // }
 
-                                            var status = "<a href='javascript:void()' class='btn btn-success btn-sm'>Detail</a>";
+                                            //var status = "<a href='javascript:void()' class='btn btn-success btn-sm'>Detail</a>";
 
                                             var amount = parseFloat(value.ngo_payment_data_donation_amount).toFixed(2);
+                                            var date_range_amount = parseFloat(value.between_dates_amount).toFixed(2);
 
-                                            dataTable.row.add([value.ngo_payment_data_campaign_id, value.ngo_payment_data_campaign_title, amount, value.total_donors, status]);
+                                            dataTable.row.add([value.ngo_payment_data_campaign_id, value.ngo_payment_data_campaign_title, amount, value.total_donors, date_range_amount, value.between_dates_count]);
                                         });
                                         dataTable.draw();
                                     }

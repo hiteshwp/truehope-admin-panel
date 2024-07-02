@@ -157,9 +157,10 @@
                                                 <tr>
                                                     <th class="border-bottom-0">Campaign ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Total Donation</th>
-                                                    <th class="border-bottom-0">Total Donors</th>
-                                                    <!-- <th class="border-bottom-0">Status</th> -->
+                                                    <th class="border-bottom-0">Todays Donation</th>
+                                                    <th class="border-bottom-0">Todays Donors</th>
+                                                    <th class="border-bottom-0">Donation (Within Date Range)</th>
+                                                    <th class="border-bottom-0">Donors (Within Date Range)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -173,8 +174,9 @@
                                                                     <td><?php echo $dashboard_donation_data_list["ngo_payment_data_campaign_id"]; ?></td>
                                                                     <td><?php echo $dashboard_donation_data_list["ngo_payment_data_campaign_title"]; ?></td>                                                                  
                                                                     <td><?php echo number_format($dashboard_donation_data_list["ngo_payment_data_donation_amount"], 2); ?></td>
-                                                                    <td><?php echo $dashboard_donation_data_list["total_donors"]; ?></td> 
-                                                                    <!-- <td><a href='javascript:void()' class='btn btn-success btn-sm'>Detail</a></td> -->
+                                                                    <td><?php echo $dashboard_donation_data_list["total_donors"]; ?></td>
+                                                                    <td><?php echo number_format($dashboard_donation_data_list["last_7_days_amount"], 2); ?></td>
+                                                                    <td><?php echo $dashboard_donation_data_list["last_7_days_count"]; ?></td>
                                                                 </tr>
                                                             <?php
                                                         }
@@ -185,9 +187,10 @@
                                                 <tr>
                                                     <th class="border-bottom-0">Campaign ID</th>
                                                     <th class="border-bottom-0">Campaign Title</th>
-                                                    <th class="border-bottom-0">Total Donation</th>
-                                                    <th class="border-bottom-0">Total Donors</th>
-                                                    <!-- <th class="border-bottom-0">Status</th> -->
+                                                    <th class="border-bottom-0">Todays Donation</th>
+                                                    <th class="border-bottom-0">Todays Donors</th>
+                                                    <th class="border-bottom-0">Donation (Within Date Range)</th>
+                                                    <th class="border-bottom-0">Donors (Within Date Range)</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
